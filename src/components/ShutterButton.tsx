@@ -4,16 +4,21 @@ import { Colors } from '../constants/Colors';
 
 interface ShutterButtonProps {
   onPress: () => void;
+  onLongPress?: () => void;
+  onPressOut?: () => void;
   disabled?: boolean;
 }
 
-export const ShutterButton: React.FC<ShutterButtonProps> = ({ onPress, disabled }) => {
+export const ShutterButton: React.FC<ShutterButtonProps> = ({ onPress, onLongPress, onPressOut, disabled }) => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
       style={[styles.outerCircle, disabled && styles.disabled]}
       onPress={onPress}
+      onLongPress={onLongPress}
+      onPressOut={onPressOut}
       disabled={disabled}
+      delayLongPress={300}
     >
       <View style={styles.innerCircle} />
     </TouchableOpacity>
